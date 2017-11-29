@@ -10,10 +10,16 @@ import UIKit
 
 class ImageViewController: UIViewController {
 
+    @IBOutlet weak var imageview: UIImageView!
+    @IBOutlet weak var labelname: UILabel!
+    var landmarkName = ""
+    var landmarkImage = UIImage()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        imageview.image = landmarkImage
+        labelname.text = landmarkName
     }
 
    

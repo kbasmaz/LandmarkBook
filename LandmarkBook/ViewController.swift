@@ -15,7 +15,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableviewLandmark: UITableView!
    
     var landmarkNames = [String]()
-    var lanmarkImages  = [UIImage] ()
+    var landmarkImages  = [UIImage] ()
+    
+    var selectedLandmarkName = ""
+    var selectedLanmarkImage  = UIImage()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,11 +40,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         landmarkNames.append("Taj mahal")
         landmarkNames.append("Great Wall")
         
-        lanmarkImages.append(UIImage(  named : "colosseum.jpeg")!)
-        lanmarkImages.append(UIImage(  named : "kremlin.jpeg")!)
-        lanmarkImages.append(UIImage(  named : "stonehenge.jpeg")!)
-        lanmarkImages.append(UIImage(  named : "tajmahal.jpeg")!)
-        lanmarkImages.append(UIImage(  named : "thegreatwall.jpeg")!)
+        landmarkImages.append(UIImage(  named : "colosseum.jpeg")!)
+        landmarkImages.append(UIImage(  named : "kremlin.jpeg")!)
+        landmarkImages.append(UIImage(  named : "stonehenge.jpeg")!)
+        landmarkImages.append(UIImage(  named : "tajmahal.jpeg")!)
+        landmarkImages.append(UIImage(  named : "thegreatwall.jpeg")!)
        
         tableviewLandmark.dataSource     = self
         tableviewLandmark.delegate = self
@@ -58,17 +62,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tvcell.textLabel?.text = landmarkNames[indexPath.row]
         return tvcell
     }
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
-        // Tableview'den Kayıt Silmek.
-        
-        if editingStyle == UITableViewCellEditingStyle.delete {
-            landmarkNames.remove(at: indexPath.row)
-            lanmarkImages.remove(at: indexPath.row)
-            tableviewLandmark.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toImageVC" {
+            
+            let destinationVC = segue.destination as! ImageViewController
+            destinationVC.landmarkName = selectedLandmarkName
+            destinationVC.landmarkImage = selectedLanmarkImage
             
         }
     }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        // Tableview'den Kayıt Silmek.
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            landmarkNames.remove(at: indexPath.row)
+            landmarkImages.remove(at: indexPath.row)
+    
+            tableviewLandmark.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedLandmarkName = landmarkNames[indexPath.row]
+        selectedLanmarkImage = landmarkImages[indexPath.row]
+        performSegue(withIdentifier: "toImageVC", sender: nil)
+    }
+    
 
 }
 

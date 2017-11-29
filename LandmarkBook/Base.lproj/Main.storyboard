@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,6 +37,7 @@
                     <navigationItem key="navigationItem" id="htT-GX-1oN"/>
                     <connections>
                         <outlet property="tableviewLandmark" destination="qwb-vw-nrD" id="Vdt-90-hTQ"/>
+                        <segue destination="Bt3-r3-alc" kind="show" identifier="toImageVC" id="CIJ-6P-H2J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -52,29 +52,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="339-YT-TOH">
-                                <rect key="frame" x="16" y="44" width="94" height="30"/>
-                                <state key="normal" title="&lt;-- Return"/>
-                                <connections>
-                                    <segue destination="jjN-b3-cH7" kind="show" id="aiE-4C-Jho"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ITB-lf-Yff">
-                                <rect key="frame" x="16" y="82" width="288" height="377"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ITB-lf-Yff">
+                                <rect key="frame" x="29" y="175.5" width="263" height="199.5"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApH-nd-hpa">
+                                <rect key="frame" x="29" y="124" width="263" height="25.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ITB-lf-Yff" firstAttribute="top" secondItem="339-YT-TOH" secondAttribute="bottom" constant="8" symbolic="YES" id="30p-BL-6B7"/>
-                            <constraint firstItem="339-YT-TOH" firstAttribute="leading" secondItem="arx-C4-OhW" secondAttribute="leadingMargin" id="4wg-Fv-52F"/>
-                            <constraint firstItem="b2d-GF-7GL" firstAttribute="bottom" secondItem="ITB-lf-Yff" secondAttribute="bottom" constant="109" id="JWN-e9-l93"/>
-                            <constraint firstItem="339-YT-TOH" firstAttribute="leading" secondItem="ITB-lf-Yff" secondAttribute="leading" id="Nfa-z9-rtT"/>
-                            <constraint firstItem="b2d-GF-7GL" firstAttribute="trailing" secondItem="339-YT-TOH" secondAttribute="trailing" constant="210" id="W7C-FI-Sjq"/>
-                            <constraint firstItem="ITB-lf-Yff" firstAttribute="trailing" secondItem="arx-C4-OhW" secondAttribute="trailingMargin" id="Zcx-Oh-aAG"/>
-                            <constraint firstItem="339-YT-TOH" firstAttribute="top" secondItem="b2d-GF-7GL" secondAttribute="top" constant="24" id="tIi-oN-haf"/>
+                            <constraint firstItem="ApH-nd-hpa" firstAttribute="centerX" secondItem="arx-C4-OhW" secondAttribute="centerX" id="CC7-a1-6aB"/>
+                            <constraint firstItem="b2d-GF-7GL" firstAttribute="bottom" secondItem="ITB-lf-Yff" secondAttribute="bottom" constant="193" id="Jge-5N-2Iw"/>
+                            <constraint firstItem="ApH-nd-hpa" firstAttribute="leading" secondItem="ITB-lf-Yff" secondAttribute="leading" id="Pal-QZ-mGR"/>
+                            <constraint firstItem="ApH-nd-hpa" firstAttribute="leading" secondItem="b2d-GF-7GL" secondAttribute="leading" constant="29" id="Tcb-DW-1fG"/>
+                            <constraint firstItem="ApH-nd-hpa" firstAttribute="trailing" secondItem="ITB-lf-Yff" secondAttribute="trailing" id="UcF-Jg-dYi"/>
+                            <constraint firstItem="ApH-nd-hpa" firstAttribute="top" secondItem="b2d-GF-7GL" secondAttribute="top" constant="60" id="mGm-sB-b06"/>
+                            <constraint firstItem="ITB-lf-Yff" firstAttribute="top" secondItem="ApH-nd-hpa" secondAttribute="bottom" constant="26" id="zfz-1Q-9FI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="b2d-GF-7GL"/>
                     </view>
+                    <connections>
+                        <outlet property="imageview" destination="ITB-lf-Yff" id="lDZ-ij-yAa"/>
+                        <outlet property="labelname" destination="ApH-nd-hpa" id="4UB-Pv-oDe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T9l-Nc-S7W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -96,7 +99,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0SE-aE-5Bo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-231" y="25"/>
+            <point key="canvasLocation" x="-413" y="25"/>
         </scene>
     </scenes>
 </document>
